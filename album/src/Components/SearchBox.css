@@ -1,0 +1,19 @@
+.input{
+    font-size: small;
+    width: 450px;
+    height: 30px;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 2px;
+   
+}
+.searchHide{
+    display: none;
+}
+.searchShow{
+    display: block;
+    width: 450px;
+    border: 2px solid black;
+    background-color: white;
+    text-align: left;
+}

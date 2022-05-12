@@ -1,0 +1,16 @@
+.header{
+    border: 2px solid black;
+    background-color: black;
+    margin-bottom: 25px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+h2{
+    color: white;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 200;
+}

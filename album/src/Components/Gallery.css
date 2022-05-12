@@ -1,0 +1,11 @@
+.grid-container{
+    margin: 150px auto;
+
+}
+.img-preview{
+    height: 92%;
+    width: 100%;
+    object-fit: contain;
+    margin-top: 70px;
+    margin-bottom: 80px;
+}
