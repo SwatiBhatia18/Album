@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState ,useEffect} from 'react'
 import SearchBox from "./Components/SearchBox";
 import './App.css'
 import Gallery from "./Components/Gallery";
@@ -6,7 +6,9 @@ import Gallery from "./Components/Gallery";
 
 function App() {
   const [input , setInput] = useState("");
-  var array = [];
+
+  let array = [];
+  // useEffect (()=> console.log("Value check", page),[page])
   return (
 
     <center >
@@ -14,7 +16,7 @@ function App() {
         <h2>Search Photos</h2>
         <SearchBox input={input} setInput={setInput} array={array}/>
       </div>
-      <Gallery query={input}/>
+      <Gallery query={input} />
     </center>
     
   );

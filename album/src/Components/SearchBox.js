@@ -5,15 +5,15 @@ import {DebounceInput} from 'react-debounce-input';
 var array = [];
 // var a = [];
 const SearchBox = ({input , setInput }) => {
- 
-  function storeInput(input1){
-    if(input1.length >= 2){
-      console.log("Ok");
-      array = [...array, input1];
-      console.log(array); 
-    }  
-    window.localStorage.setItem("search",JSON.stringify(array));
-  }
+  const [array , setArray] = useState([]);
+  // function storeInput(input1){
+  //   if(input1.length >= 2){
+  //     console.log("Ok");
+  //     array = [...array, input1];
+  //     console.log(array); 
+  //   }  
+  //   window.localStorage.setItem("search",JSON.stringify(array));
+  // }
 
  
   const [style , setStyle] = useState("searchHide");
@@ -22,14 +22,51 @@ const SearchBox = ({input , setInput }) => {
     {
       setStyle("searchShow");
     }
+    if(input.length == 0)
+    {
+      setStyle("searchHide");
+    }
 
   }, [input]);
   
-  let a=[]
-  const b = window.localStorage.getItem("search");
+
+  useEffect(() => {
+    const data = JSON.parse(window.localStorage.getItem('search'));
+    window.localStorage.setItem("search",JSON.stringify([]));
+    console.log(typeof(data));
+    if ( data) setArray(data);
+  
+  }, []); 
+
+  useEffect(()=>{
+    let data = JSON.parse(window.localStorage.getItem("search"));
+    window.localStorage.setItem("search",JSON.stringify([...data , input ]));
+    // let b = [...data , input];
+    // b.toString();
+    // if(b.includes(input))
+    // {
+    //   setArray()
+    // }
+    setArray([...data , input]);
+  },[input])
+
+
+  function selectItem(item) {
+    console.log(item);
+    
+  }
+
+  const changebg = () => {
+    console.log("hovered");
+    setStyle("hover");
+  }
+  
+  const clickFunc =(item) =>{
+    setInput(item);
+  }
   // a=[...b]
-  // console.log(a, "check");
- 
+//   console.log(a, "check");
+//  console.log(typeof(a));
   return (
     <div>
     < DebounceInput 
@@ -39,15 +76,18 @@ const SearchBox = ({input , setInput }) => {
     placeholder='Type to search photos' 
     className='input'
     value={input}
-    onChange={(e)=> {setInput(e.target.value); storeInput(input)}}
+    onChange={(e)=> {setInput(e.target.value)}}
     />
-    <div className={style}>
+    <div className={style}  >
+       
+        {array.map((item) => {
+         
+          return (
+          
+           <div onClick={clickFunc(item)}>{item}</div>
+           
 
-        {a.map((item) => (
-          
-           <div>{item}</div>
-          
-        )
+        )}
        )}
     </div>
     </div>
